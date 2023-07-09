@@ -29,6 +29,7 @@ STRING=28
 EscapeSequence=29
 IDENTIFIER=30
 WS=31
+COMMENT=32
 'var'=1
 '='=2
 ';'=3

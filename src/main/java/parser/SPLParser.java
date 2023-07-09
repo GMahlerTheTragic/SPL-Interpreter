@@ -1,5 +1,5 @@
 package parser;
-// Generated from grammar/SPL.g4 by ANTLR 4.13.0
+// Generated from SPL.g4 by ANTLR 4.13.0
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -21,7 +21,7 @@ public class SPLParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, NUMBER=27, STRING=28, EscapeSequence=29, IDENTIFIER=30, 
-		WS=31;
+		WS=31, COMMENT=32;
 	public static final int
 		RULE_program = 0, RULE_declaration = 1, RULE_varDecl = 2, RULE_statement = 3, 
 		RULE_exprStmt = 4, RULE_ifStmt = 5, RULE_printStmt = 6, RULE_whileStmt = 7, 
@@ -50,7 +50,7 @@ public class SPLParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, "NUMBER", "STRING", "EscapeSequence", "IDENTIFIER", 
-			"WS"
+			"WS", "COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -117,13 +117,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_program; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterProgram(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitProgram(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitProgram(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -175,13 +173,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_declaration; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterDeclaration(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitDeclaration(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitDeclaration(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -242,13 +238,12 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_varDecl; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterVarDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitVarDecl(this);
+		
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitVarDecl(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -311,13 +306,12 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitStatement(this);
+		
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitStatement(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -394,13 +388,12 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_exprStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterExprStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitExprStmt(this);
+		
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitExprStmt(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -442,13 +435,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_ifStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterIfStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitIfStmt(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitIfStmt(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -502,13 +493,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_printStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterPrintStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitPrintStmt(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitPrintStmt(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -549,13 +538,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_whileStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterWhileStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitWhileStmt(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitWhileStmt(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -600,13 +587,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterBlock(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitBlock(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitBlock(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -657,13 +642,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expression; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitExpression(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitExpression(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -701,13 +684,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_assignment; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterAssignment(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitAssignment(this);
+		public void accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				((SPLVisitor)visitor).visitAssignment(this);
+			}
+			else visitor.visitChildren(this);
 		}
 	}
 
@@ -761,13 +742,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_logic_or; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterLogic_or(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitLogic_or(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitLogic_or(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -821,13 +800,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_logic_and; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterLogic_and(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitLogic_and(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitLogic_and(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -881,13 +858,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_equality; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterEquality(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitEquality(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitEquality(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -949,13 +924,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_comparison; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterComparison(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitComparison(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitComparison(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1017,13 +990,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_term; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterTerm(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitTerm(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitTerm(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1085,13 +1056,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_factor; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterFactor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitFactor(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitFactor(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1153,13 +1122,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_unary; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterUnary(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitUnary(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitUnary(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1228,13 +1195,11 @@ public class SPLParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_primary; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).enterPrimary(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SPLListener ) ((SPLListener)listener).exitPrimary(this);
+		public Value accept(SPLBaseVisitor visitor) {
+			if ( visitor instanceof SPLVisitor ) {
+				return ((SPLVisitor)visitor).visitPrimary(this);
+			}
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1307,25 +1272,25 @@ public class SPLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u001f\u00a9\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
-		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
-		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
-		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
-		"\u0002\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007"+
-		"\u000f\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0002\u0012\u0007"+
-		"\u0012\u0001\u0000\u0005\u0000(\b\u0000\n\u0000\f\u0000+\t\u0000\u0001"+
-		"\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0003\u00011\b\u0001\u0001"+
-		"\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u00027\b\u0002\u0001"+
-		"\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001"+
-		"\u0003\u0003\u0003@\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001"+
-		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001"+
-		"\u0005\u0003\u0005L\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001"+
-		"\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001"+
-		"\u0007\u0001\b\u0001\b\u0005\bZ\b\b\n\b\f\b]\t\b\u0001\b\u0001\b\u0001"+
-		"\t\u0001\t\u0001\n\u0001\n\u0001\n\u0001\n\u0003\ng\b\n\u0001\u000b\u0001"+
-		"\u000b\u0001\u000b\u0005\u000bl\b\u000b\n\u000b\f\u000bo\t\u000b\u0001"+
-		"\f\u0001\f\u0001\f\u0005\ft\b\f\n\f\f\fw\t\f\u0001\r\u0001\r\u0001\r\u0005"+
-		"\r|\b\r\n\r\f\r\u007f\t\r\u0001\u000e\u0001\u000e\u0001\u000e\u0005\u000e"+
+		"\u0004\u0001 \u00a9\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
+		"\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007\u000f"+
+		"\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0002\u0012\u0007\u0012"+
+		"\u0001\u0000\u0005\u0000(\b\u0000\n\u0000\f\u0000+\t\u0000\u0001\u0000"+
+		"\u0001\u0000\u0001\u0001\u0001\u0001\u0003\u00011\b\u0001\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u00027\b\u0002\u0001\u0002"+
+		"\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0003\u0003@\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0003\u0005L\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
+		"\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007"+
+		"\u0001\b\u0001\b\u0005\bZ\b\b\n\b\f\b]\t\b\u0001\b\u0001\b\u0001\t\u0001"+
+		"\t\u0001\n\u0001\n\u0001\n\u0001\n\u0003\ng\b\n\u0001\u000b\u0001\u000b"+
+		"\u0001\u000b\u0005\u000bl\b\u000b\n\u000b\f\u000bo\t\u000b\u0001\f\u0001"+
+		"\f\u0001\f\u0005\ft\b\f\n\f\f\fw\t\f\u0001\r\u0001\r\u0001\r\u0005\r|"+
+		"\b\r\n\r\f\r\u007f\t\r\u0001\u000e\u0001\u000e\u0001\u000e\u0005\u000e"+
 		"\u0084\b\u000e\n\u000e\f\u000e\u0087\t\u000e\u0001\u000f\u0001\u000f\u0001"+
 		"\u000f\u0005\u000f\u008c\b\u000f\n\u000f\f\u000f\u008f\t\u000f\u0001\u0010"+
 		"\u0001\u0010\u0001\u0010\u0005\u0010\u0094\b\u0010\n\u0010\f\u0010\u0097"+
