@@ -34,12 +34,12 @@ To build and run the interpreter, follow these steps:
 2. Open a terminal or command prompt and navigate to the project's root directory.
 
 3. Build the project using Maven by running the following command:
-````bash`
+```bash
 mvn clean
 mvn package
-````bash`
+```
 4. Interpret a SPL programm by calling the interpreter in the following way:
-````bash`
+```bash
 java -jar target/spl-interpreter-1.0-SNAPSHOT.jar `path/to/your/.spl/file`
-````bash`
+```
 
