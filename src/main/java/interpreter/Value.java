@@ -1,6 +1,8 @@
-package parser;
+package interpreter;
 
 import java.util.function.BiFunction;
+
+import interpreter.exceptions.TypeException;
 
 /**
  * Value class that encapsulates numeric and string values and the
@@ -159,15 +161,17 @@ public class Value {
         return new Value(Math.round(Math.pow(internalNumber(), right.internalNumber())));
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Value)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Value))
+            return false;
 
         Value value1 = (Value) o;
 
-        if (isNaN != value1.isNaN) return false;
+        if (isNaN != value1.isNaN)
+            return false;
         return value != null ? value.equals(value1.value) : value1.value == null;
     }
 
@@ -182,6 +186,5 @@ public class Value {
     public String toString() {
         return this.value.toString();
     }
-
 
 }

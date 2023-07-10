@@ -1,4 +1,4 @@
-package parser;
+package interpreter;
 
 import java.util.LinkedList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class Environment {
             if (variabelMap.containsKey(identifier)) {
                 variabelMap.put(identifier, value);
                 return;
-            }  
+            }
         }
         HashMap<String, Value> currentScopeVariables = variableMapContainer.peek();
         currentScopeVariables.put(identifier, value);
@@ -34,7 +34,7 @@ public class Environment {
         for (HashMap<String, Value> variabelMap : variableMapContainer) {
             if (variabelMap.containsKey(identifier)) {
                 return variabelMap.get(identifier);
-            }  
+            }
         }
         throw new RuntimeException();
     }

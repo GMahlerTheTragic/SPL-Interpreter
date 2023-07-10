@@ -1,4 +1,6 @@
-package parser;
+package interpreter.exceptions;
+
+import interpreter.Utils;
 
 public abstract class InterpreterException extends RuntimeException {
 

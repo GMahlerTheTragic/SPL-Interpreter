@@ -1,4 +1,4 @@
-package parser;
+package interpreter.exceptions;
 
 /**
  * Type mismatch error.
