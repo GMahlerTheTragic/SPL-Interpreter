@@ -38,4 +38,8 @@ public class Environment {
         }
         throw new RuntimeException();
     }
+
+    public LinkedList<HashMap<String, Value>> getVariableMapContainer() {
+        return variableMapContainer;
+    }
 }
