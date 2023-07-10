@@ -40,9 +40,15 @@ import interpreter.Value;
 public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements SPLVisitor {
 	private TokenStreamRewriter rewriter;
 
-	private Environment environment = new Environment();
+	private Environment environment;
 
 	public SPLVisitorImpl(TokenStream tokenStream) {
+		this.environment = new Environment();
+		this.rewriter = new TokenStreamRewriter(tokenStream);
+	}
+
+	public SPLVisitorImpl(TokenStream tokenStream, Environment environment) {
+		this.environment = environment;
 		this.rewriter = new TokenStreamRewriter(tokenStream);
 	}
 
