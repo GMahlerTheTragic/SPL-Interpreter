@@ -46,7 +46,6 @@ if (!log1 and log2 and log3 and log4){
  	print "Logic or: ok";
 }
 
-var j =  4 + "asdf";
-if (j == "4.0asdf") {
-	print "Number + String: ok";
-}
+print 4 + "asdf";
+var my = 5;
+print "hier" %

@@ -5,7 +5,7 @@ import java.util.function.BiFunction;
 import interpreter.exceptions.TypeException;
 
 /**
- * Value class that encapsulates numeric and string values and the
+ * Value class that encapsulates numeric and string values and their
  * corresponding operations.
  */
 public class Value {
@@ -19,6 +19,14 @@ public class Value {
 
     public Value(String value) {
         this.value = value;
+    }
+
+    public static Value fromPrimaryString(String value) {
+        if (value.length() <= 2) {
+            return new Value("");
+        } else {
+            return new Value(value.substring(1, value.length() - 1));
+        }
     }
 
     public Value(double value) {

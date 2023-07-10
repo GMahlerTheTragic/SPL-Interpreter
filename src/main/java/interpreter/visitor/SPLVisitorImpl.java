@@ -438,7 +438,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 			return new Value(Double.parseDouble(ctx.NUMBER().getText()));
 		}
 		if (ctx.STRING() != null) {
-			return new Value(ctx.STRING().getText());
+			return Value.fromPrimaryString(ctx.STRING().getText());
 		}
 		if (ctx.getText().equals("true")) {
 			return Value.TRUE;
