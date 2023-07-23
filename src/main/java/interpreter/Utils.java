@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Utility methods.
+ * format error message to show line number etc. for an Interpreter Error
  */
 public class Utils {
 

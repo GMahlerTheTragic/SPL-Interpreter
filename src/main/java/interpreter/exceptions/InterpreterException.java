@@ -2,6 +2,7 @@ package interpreter.exceptions;
 
 import interpreter.Utils;
 
+// Exception to be thrown by the Interpreter at runtime, if erroneous language use is detected
 public abstract class InterpreterException extends RuntimeException {
 
     private int line;

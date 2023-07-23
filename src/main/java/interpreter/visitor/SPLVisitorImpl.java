@@ -53,12 +53,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 Entry point. Visit all declarations in program.
 	 */
 	@Override
 	public void visitProgram(ProgramContext ctx) {
@@ -69,12 +64,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 Visit all variable declarations and statments in declaration
 	 */
 	@Override
 	public void visitDeclaration(DeclarationContext ctx) {
@@ -87,12 +77,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	extract identifier name and assign value if applicable in the environment
 	 */
 	@Override
 	public void visitVarDecl(VarDeclContext ctx) {
@@ -106,11 +91,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 
 	/**
 	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 choose which kind of statment we have and dispatch
 	 */
 	@Override
 	public void visitStatement(StatementContext ctx) {
@@ -132,12 +113,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 return value of expression
 	 */
 	@Override
 	public Value visitExprStmt(ExprStmtContext ctx) {
@@ -145,12 +121,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement if else rule taking care of scoping
 	 */
 	@Override
 	public void visitIfStmt(IfStmtContext ctx) {
@@ -169,12 +140,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 use map print statment to java println
 	 */
 	@Override
 	public void visitPrintStmt(PrintStmtContext ctx) {
@@ -182,12 +148,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement while rule taking care of scoping
 	 */
 	@Override
 	public void visitWhileStmt(WhileStmtContext ctx) {
@@ -201,12 +162,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 essentially enter a new scope
 	 */
 	@Override
 	public void visitBlock(BlockContext ctx) {
@@ -218,12 +174,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 just pass on to assignment
 	 */
 	@Override
 	public Value visitExpression(ExpressionContext ctx) {
@@ -231,12 +182,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 if variable assigment, assign value in environment, eles hand on
 	 */
 	@Override
 	public Value visitAssignment(AssignmentContext ctx) {
@@ -249,11 +195,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 
 	/**
 	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement logical or or hand on to logical and
 	 */
 	@Override
 	public Value visitLogic_or(Logic_orContext ctx) {
@@ -269,11 +211,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 
 	/**
 	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement logical and or hand on to equality
 	 */
 	@Override
 	public Value visitLogic_and(Logic_andContext ctx) {
@@ -288,12 +226,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement equality
 	 */
 	@Override
 	public Value visitEquality(EqualityContext ctx) {
@@ -315,12 +248,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement comparison
 	 */
 	@Override
 	public Value visitComparison(ComparisonContext ctx) {
@@ -349,12 +277,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement term
 	 */
 	@Override
 	public Value visitTerm(TermContext ctx) {
@@ -376,12 +299,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement factor
 	 */
 	@Override
 	public Value visitFactor(FactorContext ctx) {
@@ -403,12 +321,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement unary
 	 */
 	@Override
 	public Value visitUnary(UnaryContext ctx) {
@@ -425,12 +338,7 @@ public class SPLVisitorImpl extends AbstractParseTreeVisitor<Value> implements S
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 * </p>
+	 implement primary
 	 */
 	@Override
 	public Value visitPrimary(PrimaryContext ctx) {

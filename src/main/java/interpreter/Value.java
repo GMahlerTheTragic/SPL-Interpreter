@@ -21,6 +21,7 @@ public class Value {
         this.value = value;
     }
 
+    // effectively making sure that quotation marks are not doubly printed
     public static Value fromPrimaryString(String value) {
         if (value.length() <= 2) {
             return new Value("");
@@ -86,6 +87,7 @@ public class Value {
         return arithmeticEval(right, (l, r) -> l % r);
     }
 
+    // operator overlaoding, see SEMANTICS.md
     public Value add(Value right) {
         if (isString() && right.isString()) {
             return new Value(internalString() + right.internalString());
@@ -124,6 +126,7 @@ public class Value {
         return relEval(right, (l, r) -> l <= r);
     }
 
+    // Check for equality
     public Value eq(Value right) {
         if (isNumber() && right.isNumber()) {
             return relEval(right, (l, r) -> l.equals(r));

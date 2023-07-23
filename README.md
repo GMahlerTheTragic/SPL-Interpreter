@@ -25,7 +25,7 @@ Before running the code, ensure that you have the following prerequisites instal
 - Apache Maven
 - ANTLR 4.12.0
 - JUnit 5.5.2
-- JUnit 5.4.0
+- Mockito 5.4.0
 
 ## Running the Code
 
@@ -40,7 +40,7 @@ To build and run the interpreter, follow these steps:
 mvn clean
 mvn package
 ```
-4. Interpret a SPL programm by calling the interpreter in the following way:
+4. Interpret an SPL programm by calling the interpreter in the following way:
 ```bash
 java -jar target/spl-interpreter-1.0-SNAPSHOT.jar `path/to/your/.spl/file`
 ```
@@ -56,4 +56,6 @@ To build and run the test suite, follow these steps:
 mvn clean
 mvn test
 ```
+
+3. Note the E2E test can be found in the class `src/test/interpreter/SPLInterpreterTest`.
 
