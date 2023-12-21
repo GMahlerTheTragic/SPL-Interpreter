@@ -1,6 +1,7 @@
 ![example workflow](https://github.com/GMahlerTheTragic/SPL-Interpreter/actions/workflows/maven.yml/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GMahlerTheTragic_SPL-Interpreter&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=GMahlerTheTragic_SPL-Interpreter)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GMahlerTheTragic_SPL-Interpreter&metric=coverage)](https://sonarcloud.io/summary/new_code?id=GMahlerTheTragic_SPL-Interpreter)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=GMahlerTheTragic_SPL-Interpreter&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=GMahlerTheTragic_SPL-Interpreter)
 
 # A simple interpreter for SPL (Structured Programming Language)
 
