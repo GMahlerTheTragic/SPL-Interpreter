@@ -44,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn package && mvn sonar:sonar -Pcoverage -Dsonar.projectKey=GMahlerTheTragic_SPL-Interpreter
+        run: mvn clean verify && mvn sonar:sonar -Pcoverage -Dsonar.projectKey=GMahlerTheTragic_SPL-Interpreter
       - name: Upload test results
         uses: actions/upload-artifact@v2
         with:
