@@ -44,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn clean verify && ls target
+        run: mvn clean org.jacoco:jacoco-maven-plugin:0.8.7:prepare-agent verify org.jacoco:jacoco-maven-plugin:0.8.7:report sonar:sonar -Dsonar.projectKey=GMahlerTheTragic_SPL-Interpreter
       - name: Upload test results
         uses: actions/upload-artifact@v2
         with:
