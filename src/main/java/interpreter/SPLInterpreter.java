@@ -12,7 +12,7 @@ public class SPLInterpreter {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Fatal Error: No input file specified - terminating");
-            System.exit(1)
+            System.exit(1);
         }
         
         // Read in the program from file
