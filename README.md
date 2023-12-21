@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GMahlerTheTragic_SPL-Interpreter&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=GMahlerTheTragic_SPL-Interpreter)
+
 # A simple interpreter for SPL (Structured Programming Language)
 
 This project is a simple interpreter for the SPL' programming language. It consists of a parser created using ANTLR and an interpreter written by hand in Java.
