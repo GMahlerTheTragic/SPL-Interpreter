@@ -20,7 +20,7 @@ public class Utils {
             byte[] bytes = Files.readAllBytes(path);
             return new String(bytes, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            System.out.println(e)
+            System.out.println(e);
             return null;
         }
     }
