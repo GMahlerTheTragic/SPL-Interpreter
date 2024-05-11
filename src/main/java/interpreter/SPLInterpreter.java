@@ -1,11 +1,12 @@
 package interpreter;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
 
 import frontend.SPLLexer;
 import frontend.SPLParser;
 import frontend.SPLParser.ProgramContext;
 import interpreter.visitor.SPLVisitorImpl;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+
 
 public class SPLInterpreter {
 
@@ -14,12 +15,13 @@ public class SPLInterpreter {
             System.out.println("Fatal Error: No input file specified - terminating");
             System.exit(1);
         }
-        
+
         // Read in the program from file
         String filePath = args[0];
         String programAsString = Utils.readFileToString(filePath);
 
-        // Parse the programm
+        // Parse the program
+        assert programAsString != null;
         SPLLexer lexer = new SPLLexer(CharStreams.fromString(programAsString));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SPLParser parser = new SPLParser(tokens);
