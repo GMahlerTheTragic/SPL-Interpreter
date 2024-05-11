@@ -1,25 +1,23 @@
 package interpreter;
 
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+class SPLInterpreterTest {
 
-public class SPLInterpreterTest {
-    
     @Test
-    public void testFibonacci() {
+    void testFibonacci() {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        String[] pathToProgram = {"/src/main/resources/spl-sample-programms/Fibonacci.spl"};
+        String[] pathToProgram = {"/src/main/resources/spl-sample-programs/Fibonacci.spl"};
         SPLInterpreter.main(pathToProgram);
         // Restore System.out
         System.setOut(originalOut);
@@ -43,12 +41,12 @@ public class SPLInterpreterTest {
     }
 
     @Test
-    public void testEuclidean() {
+    void testEuclidean() {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        String[] pathToProgram = {"/src/main/resources/spl-sample-programms/Euclidean.spl"};
+        String[] pathToProgram = {"/src/main/resources/spl-sample-programs/Euclidean.spl"};
         SPLInterpreter.main(pathToProgram);
         // Restore System.out
         System.setOut(originalOut);
@@ -63,12 +61,12 @@ public class SPLInterpreterTest {
     }
 
     @Test
-    public void testMid() {
+    void testMid() {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        String[] pathToProgram = {"/src/main/resources/spl-sample-programms/Mid.spl"};
+        String[] pathToProgram = {"/src/main/resources/spl-sample-programs/Mid.spl"};
         SPLInterpreter.main(pathToProgram);
         // Restore System.out
         System.setOut(originalOut);
@@ -83,12 +81,12 @@ public class SPLInterpreterTest {
     }
 
     @Test
-    public void testSample() {
+    void testSample() {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
-        String[] pathToProgram = {"/src/main/resources/spl-sample-programms/sample.spl"};
+        String[] pathToProgram = {"/src/main/resources/spl-sample-programs/sample.spl"};
         SPLInterpreter.main(pathToProgram);
         // Restore System.out
         System.setOut(originalOut);

@@ -4,11 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EnvironmentTest {
+
+class EnvironmentTest {
 
     private Environment environment;
 
@@ -19,66 +20,66 @@ public class EnvironmentTest {
     }
 
     @Test
-    public void testInit() {
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+    void testInit() {
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(1, variableMapContainer.size());
-        assertTrue(variableMapContainer.getFirst().isEmpty());
+        assertTrue(variableMapContainer.get(0).isEmpty());
     }
 
     @Test
-    public void testEnterNewScope() {
+    void testEnterNewScope() {
         environment.enterNewScope();
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(2, variableMapContainer.size());
-        assertTrue(variableMapContainer.getFirst().isEmpty());
+        assertTrue(variableMapContainer.get(0).isEmpty());
     }
 
     @Test
-    public void testLeaveCurrentScope() {
+    void testLeaveCurrentScope() {
         environment.enterNewScope();
         environment.leaveCurrentScope();
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(1, variableMapContainer.size());
     }
 
     @Test
-    public void testAssignVariableInCurrentScope() {
+    void testAssignVariableInCurrentScope() {
         environment.assignVariable("x", new Value(42.0));
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(1, variableMapContainer.size());
-        HashMap<String, Value> currentScopeVariables = variableMapContainer.getFirst();
+        HashMap<String, Value> currentScopeVariables = variableMapContainer.get(0);
         assertEquals(1, currentScopeVariables.size());
         assertTrue(currentScopeVariables.containsKey("x"));
         assertEquals(new Value(42.0), currentScopeVariables.get("x"));
     }
 
     @Test
-    public void testAssignVariableInOuterScope() {
+    void testAssignVariableInOuterScope() {
         environment.enterNewScope();
         environment.assignVariable("x", new Value(42.0));
         environment.leaveCurrentScope();
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(1, variableMapContainer.size());
-        HashMap<String, Value> currentScopeVariables = variableMapContainer.getFirst();
+        HashMap<String, Value> currentScopeVariables = variableMapContainer.get(0);
         assertEquals(0, currentScopeVariables.size());
         assertFalse(currentScopeVariables.containsKey("x"));
     }
 
     @Test
-    public void testAssignVariableExistingInInnerScope() {
+    void testAssignVariableExistingInInnerScope() {
         environment.enterNewScope();
         environment.assignVariable("x", new Value(10.0));
         environment.enterNewScope();
         environment.assignVariable("x", new Value(20.0));
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(3, variableMapContainer.size());
-        HashMap<String, Value> innerScopeVariables = variableMapContainer.getFirst();
+        HashMap<String, Value> innerScopeVariables = variableMapContainer.get(0);
         HashMap<String, Value> outerScopeVariables = variableMapContainer.get(1);
         assertEquals(0, innerScopeVariables.size());
         assertFalse(innerScopeVariables.containsKey("x"));
@@ -88,19 +89,19 @@ public class EnvironmentTest {
     }
 
     @Test
-    public void testAssignVariableNonExistingInAnyScope() {
+    void testAssignVariableNonExistingInAnyScope() {
         environment.assignVariable("x", new Value(42.0));
-        LinkedList<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
+        List<HashMap<String, Value>> variableMapContainer = environment.getVariableMapContainer();
         assertNotNull(variableMapContainer);
         assertEquals(1, variableMapContainer.size());
-        HashMap<String, Value> currentScopeVariables = variableMapContainer.getFirst();
+        HashMap<String, Value> currentScopeVariables = variableMapContainer.get(0);
         assertEquals(1, currentScopeVariables.size());
         assertTrue(currentScopeVariables.containsKey("x"));
         assertEquals(new Value(42.0), currentScopeVariables.get("x"));
     }
 
     @Test
-    public void testFindVariableExistingInCurrentScope() {
+    void testFindVariableExistingInCurrentScope() {
         environment.init();
         environment.assignVariable("x", new Value(42.0));
         Value result = environment.findVariable("x");
@@ -108,7 +109,7 @@ public class EnvironmentTest {
     }
 
     @Test
-    public void testFindVariableExistingInOuterScope() {
+    void testFindVariableExistingInOuterScope() {
         environment.assignVariable("x", new Value(42.0));
         environment.enterNewScope();
         Value result = environment.findVariable("x");
@@ -116,7 +117,7 @@ public class EnvironmentTest {
     }
 
     @Test
-    public void testFindVariableNonExistingInAnyScope() {
+    void testFindVariableNonExistingInAnyScope() {
         environment.init();
         assertThrows(RuntimeException.class, () -> environment.findVariable("x"));
     }

@@ -1,12 +1,13 @@
 package interpreter;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UtilsTest {
+class UtilsTest {
 
     @Test
-    public void testFormatErrorMessage() {
+    void testFormatErrorMessage() {
         int line = 5;
         int posInLine = 10;
         String message = "Syntax error";
@@ -16,8 +17,8 @@ public class UtilsTest {
     }
 
     @Test
-    public void testReadFileToStringWithExistingFile() {
-        String filePath = "/src/main/resources/spl-sample-programms/Fibonacci.spl";
+    void testReadFileToStringWithExistingFile() {
+        String filePath = "/src/main/resources/spl-sample-programs/Fibonacci.spl";
         String expectedContent = "// Print the first n Fibonacci numbers\n" + //
                 "\n" + //
                 "// Input\n" + //
@@ -42,7 +43,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void testReadFileToStringWithNonExistingFile() {
+    void testReadFileToStringWithNonExistingFile() {
         String filePath = "/path/to/nonexistent/file.txt";
         String result = Utils.readFileToString(filePath);
         assertNull(result);

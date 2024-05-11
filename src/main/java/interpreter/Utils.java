@@ -10,6 +10,9 @@ import java.nio.file.Paths;
  */
 public class Utils {
 
+    private Utils() {
+    }
+
     public static String formatErrorMessage(int line, int posInLine, String message) {
         return "Error at [" + line + ", " + posInLine + "]: " + message;
     }
@@ -20,7 +23,7 @@ public class Utils {
             byte[] bytes = Files.readAllBytes(path);
             return new String(bytes, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return null;
         }
     }

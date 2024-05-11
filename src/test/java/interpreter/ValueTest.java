@@ -3,20 +3,14 @@ package interpreter;
 import interpreter.exceptions.TypeException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ValueTest {
+class ValueTest {
 
     private static final Double DELTA = 0.0001;
-
-    // Test Value constructors and accessors
-
+    
     @Test
-    public void testStringValueConstructor() {
+    void testStringValueConstructor() {
         Value value = new Value("Hello");
         assertEquals("Hello", value.internalString());
         assertTrue(value.isString());
@@ -25,7 +19,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testNumberValueConstructor() {
+    void testNumberValueConstructor() {
         Value value = new Value(42.0);
         assertEquals(42.0, value.internalNumber(), 0.0001);
         assertFalse(value.isString());
@@ -34,7 +28,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testFromPrimaryStringWithEmptyString() {
+    void testFromPrimaryStringWithEmptyString() {
         Value value = Value.fromPrimaryString("\"\"");
         assertEquals("", value.internalString());
         assertTrue(value.isString());
@@ -43,7 +37,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testFromPrimaryStringWithValidString() {
+    void testFromPrimaryStringWithValidString() {
         Value value = Value.fromPrimaryString("\"Hello\"");
         assertEquals("Hello", value.internalString());
         assertTrue(value.isString());
@@ -52,89 +46,89 @@ public class ValueTest {
     }
 
     @Test
-    public void testInternalNumberWithNumberValue() {
+    void testInternalNumberWithNumberValue() {
         Value value = new Value(42.0);
         double result = value.internalNumber();
         assertEquals(42.0, result);
     }
 
     @Test
-    public void testInternalNumberWithStringValue() {
+    void testInternalNumberWithStringValue() {
         Value value = new Value("Hello");
         assertThrows(ClassCastException.class, value::internalNumber);
     }
 
     @Test
-    public void testInternalStringWithStringValue() {
+    void testInternalStringWithStringValue() {
         Value value = new Value("Hello");
         String result = value.internalString();
         assertEquals("Hello", result);
     }
 
     @Test
-    public void testInternalStringWithNumberValue() {
+    void testInternalStringWithNumberValue() {
         Value value = new Value(42.0);
         assertThrows(ClassCastException.class, value::internalString);
     }
 
     @Test
-    public void testIsStringWithStringValue() {
+    void testIsStringWithStringValue() {
         Value value = new Value("Hello");
         assertTrue(value.isString());
     }
 
     @Test
-    public void testIsStringWithNumberValue() {
+    void testIsStringWithNumberValue() {
         Value value = new Value(42.0);
         assertFalse(value.isString());
     }
 
     @Test
-    public void testIsNumberWithNumberValue() {
+    void testIsNumberWithNumberValue() {
         Value value = new Value(42.0);
         assertTrue(value.isNumber());
     }
 
     @Test
-    public void testIsNumberWithStringValue() {
+    void testIsNumberWithStringValue() {
         Value value = new Value("Hello");
         assertFalse(value.isNumber());
     }
 
     @Test
-    public void testIsNaNWithNaNValue() {
+    void testIsNaNWithNaNValue() {
         Value value = Value.NaN;
         assertTrue(value.isNaN());
     }
 
     @Test
-    public void testIsNaNWithNumberValue() {
+    void testIsNaNWithNumberValue() {
         Value value = new Value(42.0);
         assertFalse(value.isNaN());
     }
 
     @Test
-    public void testIsNaNWithStringValue() {
+    void testIsNaNWithStringValue() {
         Value value = new Value("Hello");
         assertFalse(value.isNaN());
     }
 
     @Test
-    public void testIsTrueWithTrueValue() {
+    void testIsTrueWithTrueValue() {
         Value value = new Value(1.0);
         assertTrue(value.isTrue());
         assertFalse(value.isFalse());
     }
 
     @Test
-    public void testIsTrueWithFalseValue() {
+    void testIsTrueWithFalseValue() {
         Value value = new Value(0.0);
         assertFalse(value.isTrue());
         assertTrue(value.isFalse());
     }
 
     @Test
-    public void testMul() {
+    void testMul() {
         Value value1 = new Value(2.0);
         Value value2 = new Value(3.0);
         Value result = value1.mul(value2);
@@ -142,7 +136,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testDiv() {
+    void testDiv() {
         Value value1 = new Value(6.0);
         Value value2 = new Value(2.0);
         Value result = value1.div(value2);
@@ -150,7 +144,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testMod() {
+    void testMod() {
         Value value1 = new Value(5.0);
         Value value2 = new Value(3.0);
         Value result = value1.mod(value2);
@@ -158,7 +152,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testAddWithTwoStrings() {
+    void testAddWithTwoStrings() {
         Value value1 = new Value("Hello");
         Value value2 = new Value(" World!");
         Value result = value1.add(value2);
@@ -166,7 +160,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testAddWithStringAndNumber() {
+    void testAddWithStringAndNumber() {
         Value value1 = new Value("Hello");
         Value value2 = new Value(42.0);
         Value result = value1.add(value2);
@@ -174,7 +168,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testAddWithTwoNumbers() {
+    void testAddWithTwoNumbers() {
         Value value1 = new Value(10.0);
         Value value2 = new Value(5.0);
         Value result = value1.add(value2);
@@ -182,7 +176,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testGt() {
+    void testGt() {
         Value value1 = new Value(5.0);
         Value value2 = new Value(2.0);
         Value result = value1.gt(value2);
@@ -190,7 +184,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testGte() {
+    void testGte() {
         Value value1 = new Value(5.0);
         Value value2 = new Value(5.0);
         Value result = value1.gte(value2);
@@ -198,7 +192,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testLt() {
+    void testLt() {
         Value value1 = new Value(2.0);
         Value value2 = new Value(5.0);
         Value result = value1.lt(value2);
@@ -206,7 +200,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testLte() {
+    void testLte() {
         Value value1 = new Value(5.0);
         Value value2 = new Value(5.0);
         Value result = value1.lte(value2);
@@ -214,7 +208,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testEqWithNumbers() {
+    void testEqWithNumbers() {
         Value value1 = new Value(5.0);
         Value value2 = new Value(5.0);
         Value result = value1.eq(value2);
@@ -222,7 +216,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testEqWithStrings() {
+    void testEqWithStrings() {
         Value value1 = new Value("Hello");
         Value value2 = new Value("Hello");
         Value result = value1.eq(value2);
@@ -230,7 +224,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testEqWithDifferentTypes() {
+    void testEqWithDifferentTypes() {
         Value value1 = new Value("Hello");
         Value value2 = new Value(5.0);
         Value result = value1.eq(value2);
@@ -238,7 +232,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testNeq() {
+    void testNeq() {
         Value value1 = new Value(5.0);
         Value value2 = new Value(5.0);
         Value result = value1.neq(value2);
@@ -246,14 +240,14 @@ public class ValueTest {
     }
 
     @Test
-    public void testNotWithZero() {
+    void testNotWithZero() {
         Value value = new Value(0.0);
         Value result = value.not();
         assertTrue(result.isTrue());
     }
 
     @Test
-    public void testAndWithTrueValues() {
+    void testAndWithTrueValues() {
         Value value1 = new Value(1.0);
         Value value2 = new Value(1.0);
         Value result = value1.and(value2);
@@ -261,7 +255,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testOrWithFalseValues() {
+    void testOrWithFalseValues() {
         Value value1 = new Value(0.0);
         Value value2 = new Value(0.0);
         Value result = value1.or(value2);
@@ -269,7 +263,7 @@ public class ValueTest {
     }
 
     @Test
-    public void testExp() {
+    void testExp() {
         Value value1 = new Value(2.0);
         Value value2 = new Value(3.0);
         Value result = value1.exp(value2);
@@ -277,57 +271,55 @@ public class ValueTest {
     }
 
     @Test
-    public void testEqualsWithEqualValues() {
+    void testEqualsWithEqualValues() {
         Value value1 = new Value(42.0);
         Value value2 = new Value(42.0);
-        assertTrue(value1.equals(value2));
+        assertEquals(value1, value2);
     }
 
     @Test
-    public void testEqualsWithDifferentValues() {
+    void testEqualsWithDifferentValues() {
         Value value1 = new Value("Hello");
         Value value2 = new Value("World");
-        assertFalse(value1.equals(value2));
+        assertNotEquals(value1, value2);
     }
 
-    // Test hashCode method
-
     @Test
-    public void testHashCode() {
+    void testHashCode() {
         Value value = new Value(42.0);
         int hashCode = value.hashCode();
         assertEquals(-933560320, hashCode);
     }
 
     @Test
-    public void testHashCodeNull() {
+    void testHashCodeNull() {
         Value value = new Value(null);
         int hashCode = value.hashCode();
         assertEquals(0, hashCode);
     }
 
     @Test
-    public void testHashCodeNaN() {
+    void testHashCodeNaN() {
         Value value = Value.NaN;
         int hashCode = value.hashCode();
         assertEquals(1, hashCode);
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         Value value = new Value("Hello");
         String result = value.toString();
         assertEquals("Hello", result);
     }
 
     @Test
-    public void testAssertNumberWithNumberValue() {
+    void testAssertNumberWithNumberValue() {
         Value value = new Value(42.0);
         assertDoesNotThrow(value::isTrue);
     }
 
     @Test
-    public void testAssertNumberWithStringValue() {
+    void testAssertNumberWithStringValue() {
         Value value = new Value("Hello");
         assertThrows(TypeException.class, value::isTrue);
     }

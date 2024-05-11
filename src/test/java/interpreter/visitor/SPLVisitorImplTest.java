@@ -1,47 +1,29 @@
 package interpreter.visitor;
 
-import org.mockito.Mockito;
-
 import frontend.SPLLexer;
-import frontend.SPLParser.AssignmentContext;
-import frontend.SPLParser.BlockContext;
-import frontend.SPLParser.ComparisonContext;
-import frontend.SPLParser.DeclarationContext;
-import frontend.SPLParser.EqualityContext;
-import frontend.SPLParser.ExprStmtContext;
-import frontend.SPLParser.ExpressionContext;
-import frontend.SPLParser.FactorContext;
-import frontend.SPLParser.IfStmtContext;
-import frontend.SPLParser.Logic_andContext;
-import frontend.SPLParser.Logic_orContext;
-import frontend.SPLParser.PrimaryContext;
-import frontend.SPLParser.PrintStmtContext;
-import frontend.SPLParser.ProgramContext;
-import frontend.SPLParser.StatementContext;
-import frontend.SPLParser.TermContext;
-import frontend.SPLParser.UnaryContext;
-import frontend.SPLParser.VarDeclContext;
-import frontend.SPLParser.WhileStmtContext;
+import frontend.SPLParser.*;
 import interpreter.Environment;
 import interpreter.Value;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.TerminalNode;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-import java.util.Arrays;
 
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.tree.TerminalNode;
-import org.junit.jupiter.api.Test;
+class SPLVisitorImplTest {
 
-public class SPLVisitorImplTest {
-
-    private SPLLexer lexer = new SPLLexer(CharStreams.fromString("asdf"));
-    private CommonTokenStream tokens = new CommonTokenStream(lexer);
-    private Environment environment = Mockito.mock(Environment.class);
-    private SPLVisitorImpl visitor = new SPLVisitorImpl(tokens, environment);
+    private final SPLLexer lexer = new SPLLexer(CharStreams.fromString("asdf"));
+    private final CommonTokenStream tokens = new CommonTokenStream(lexer);
+    private final Environment environment = Mockito.mock(Environment.class);
+    private final SPLVisitorImpl visitor = new SPLVisitorImpl(tokens, environment);
 
     @Test
     void testVisitProgram() {
@@ -276,7 +258,7 @@ public class SPLVisitorImplTest {
     void testVisitBlock() {
         BlockContext blockContext = Mockito.mock(BlockContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(blockContext.declaration()).thenReturn(Arrays.asList(Mockito.mock(DeclarationContext.class)));
+        when(blockContext.declaration()).thenReturn(Collections.singletonList(mock(DeclarationContext.class)));
         doNothing().when(visitorSpy).visitDeclaration(any());
         visitorSpy.visitBlock(blockContext);
 
@@ -332,11 +314,11 @@ public class SPLVisitorImplTest {
         Logic_orContext logicOrContext = Mockito.mock(Logic_orContext.class);
         when(assignmentContext.logic_or()).thenReturn(logicOrContext);
         Value value = new Value("22");
-        doReturn(value).when(visitorSpy).visitLogic_or(logicOrContext);
+        doReturn(value).when(visitorSpy).visitLogicOr(logicOrContext);
         Value result = visitorSpy.visitAssignment(assignmentContext);
         assertEquals(value, result);
         // Verify the expected method invocations
-        verify(visitorSpy).visitLogic_or(logicOrContext);
+        verify(visitorSpy).visitLogicOr(logicOrContext);
     }
 
     // ToDo
@@ -344,13 +326,13 @@ public class SPLVisitorImplTest {
     void testVisitLogic_or() {
         Logic_orContext logicOrContext = Mockito.mock(Logic_orContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(logicOrContext.logic_and()).thenReturn(Arrays.asList(Mockito.mock(Logic_andContext.class)));
-        doReturn(Value.FALSE).when(visitorSpy).visitLogic_and(any());
-        visitorSpy.visitLogic_or(logicOrContext);
+        when(logicOrContext.logic_and()).thenReturn(Collections.singletonList(mock(Logic_andContext.class)));
+        doReturn(Value.FALSE).when(visitorSpy).visitLogicAnd(any());
+        visitorSpy.visitLogicOr(logicOrContext);
 
         // Verify the expected method invocations
-        verify(visitorSpy).visitLogic_or(logicOrContext);
-        verify(visitorSpy).visitLogic_and(any());
+        verify(visitorSpy).visitLogicOr(logicOrContext);
+        verify(visitorSpy).visitLogicAnd(any());
         verifyNoMoreInteractions(visitorSpy);
     }
 
@@ -359,12 +341,12 @@ public class SPLVisitorImplTest {
     void testVisitLogic_and() {
         Logic_andContext logicAndContext = Mockito.mock(Logic_andContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(logicAndContext.equality()).thenReturn(Arrays.asList(Mockito.mock(EqualityContext.class)));
+        when(logicAndContext.equality()).thenReturn(Collections.singletonList(mock(EqualityContext.class)));
         doReturn(Value.TRUE).when(visitorSpy).visitEquality(any());
-        visitorSpy.visitLogic_and(logicAndContext);
+        visitorSpy.visitLogicAnd(logicAndContext);
 
         // Verify the expected method invocations
-        verify(visitorSpy).visitLogic_and(logicAndContext);
+        verify(visitorSpy).visitLogicAnd(logicAndContext);
         verify(visitorSpy).visitEquality(any());
         verifyNoMoreInteractions(visitorSpy);
     }
@@ -374,7 +356,7 @@ public class SPLVisitorImplTest {
     void testVisitEquality() {
         EqualityContext equalityContext = Mockito.mock(EqualityContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(equalityContext.comparison()).thenReturn(Arrays.asList(Mockito.mock(ComparisonContext.class)));
+        when(equalityContext.comparison()).thenReturn(Collections.singletonList(mock(ComparisonContext.class)));
         doReturn(Value.TRUE).when(visitorSpy).visitComparison(any());
         visitorSpy.visitEquality(equalityContext);
 
@@ -389,7 +371,7 @@ public class SPLVisitorImplTest {
     void testVisitComparison() {
         ComparisonContext comparisonContext = Mockito.mock(ComparisonContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(comparisonContext.term()).thenReturn(Arrays.asList(Mockito.mock(TermContext.class)));
+        when(comparisonContext.term()).thenReturn(Collections.singletonList(mock(TermContext.class)));
         doReturn(Value.TRUE).when(visitorSpy).visitTerm(any());
         visitorSpy.visitComparison(comparisonContext);
 
@@ -404,7 +386,7 @@ public class SPLVisitorImplTest {
     void testVisitTerm() {
         TermContext termContext = Mockito.mock(TermContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(termContext.factor()).thenReturn(Arrays.asList(Mockito.mock(FactorContext.class)));
+        when(termContext.factor()).thenReturn(Collections.singletonList(mock(FactorContext.class)));
         doReturn(new Value(42)).when(visitorSpy).visitFactor(any());
         visitorSpy.visitTerm(termContext);
 
@@ -419,7 +401,7 @@ public class SPLVisitorImplTest {
     void testVisitFactor() {
         FactorContext factorContext = Mockito.mock(FactorContext.class);
         SPLVisitorImpl visitorSpy = spy(visitor);
-        when(factorContext.unary()).thenReturn(Arrays.asList(Mockito.mock(UnaryContext.class)));
+        when(factorContext.unary()).thenReturn(Collections.singletonList(mock(UnaryContext.class)));
         doReturn(new Value(42)).when(visitorSpy).visitUnary(any());
         visitorSpy.visitFactor(factorContext);
 
